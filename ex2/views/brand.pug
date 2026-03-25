@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  .w3-card-4
+    header.w3-container.w3-teal
+      h1 Oficina AutoRepair - Marca: #{marca}
+      
+    .w3-container.w3-padding-16
+      
+      // 1. Lista de modelos intervencionados
+      h3 Modelos Intervencionados
+      ul.w3-ul.w3-border.w3-margin-bottom
+        each mod in modelos
+          li= mod
+          
+      // 2. Tabela de reparações desta marca
+      h3 Histórico de Reparações
+      table.w3-table-all.w3-hoverable
+        tr
+          th ID
+          th Data
+          th Nome
+          th Matrícula
+          th Número de Intervenções
+        
+        each r in reparacoes
+          tr
+            td
+              a(href="/" + r._id)= r._id
+            td= r.data
+            td= r.nome
+            td= r.viatura.matricula
+            td= r.nr_intervencoes
+
+    footer.w3-container.w3-teal
+      h5 
+        a(href="/") [ Voltar à página principal ]

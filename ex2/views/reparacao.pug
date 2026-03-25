@@ -1,0 +1,54 @@
+extends layout
+
+block content
+  .w3-card-4
+    header.w3-container.w3-teal
+      h1 Detalhes da Reparação: #{reparacao._id}
+      
+    .w3-container.w3-padding-16
+      .w3-card.w3-padding.w3-margin-bottom
+        h3 Informação do Cliente e Registo
+        ul.w3-ul
+          li
+            b Nome: 
+            span #{reparacao.nome}
+          li
+            b NIF: 
+            span #{reparacao.nif}
+          li
+            b Data: 
+            span #{reparacao.data}
+
+      .w3-card.w3-padding.w3-margin-bottom
+        h3 Detalhes da Viatura
+        ul.w3-ul
+          li
+            b Marca: 
+            span #{reparacao.viatura.marca}
+          li
+            b Modelo: 
+            span #{reparacao.viatura.modelo}
+          li
+            b Matrícula: 
+            span #{reparacao.viatura.matricula}
+
+      .w3-card.w3-padding.w3-margin-bottom
+        h3 Intervenções Realizadas (#{reparacao.nr_intervencoes})
+        if reparacao.intervencoes.length > 0
+          table.w3-table-all
+            tr
+              th Código
+              th Nome
+              th Descrição
+            each interv in reparacao.intervencoes
+              tr
+                td= interv.codigo
+                td= interv.nome
+                td= interv.descricao
+        else
+          p Não há intervenções registadas.
+
+    footer.w3-container.w3-teal
+      // Link para voltar à página principal
+      h5 
+        a(href="/") [ Voltar à página principal ]

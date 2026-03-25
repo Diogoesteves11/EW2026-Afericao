@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  .w3-card-4
+    header.w3-container.w3-teal
+      h1 Gestão de Reparações - AutoRepair
+      address Plataforma de gestão oficinal - Gerado a: #{data_atual}
+
+    .w3-container
+      table.w3-table-all.w3-hoverable.w3-margin-top.w3-margin-bottom
+        tr
+          th ID
+          th Data
+          th Nome
+          th Matrícula
+          th Marca
+          th Número de Intervenções
+        
+        each r in reparacoes
+          tr
+            td
+              a(href="/" + r._id)= r._id
+            td= r.data
+            td= r.nome
+            td= r.viatura.matricula
+            td
+              a(href="/" + r.viatura.marca)= r.viatura.marca
+            td= r.nr_intervencoes
+
+    footer.w3-container.w3-teal
+      p AutoRepair Web Interface 2026
